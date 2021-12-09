@@ -8,11 +8,14 @@ import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import {
-  HomeIcon, ItalyIcon,
-  ProjectsIcon,
-  SkillsIcon, SSLogo, USAIcon
-} from "../../../icons/icons";
-import { useRouter } from "next/router";
+ HomeIcon,
+ ItalyIcon,
+ ProjectsIcon,
+ SkillsIcon,
+ SSLogo,
+ USAIcon,
+} from '../../../icons/icons'
+import { useRouter } from 'next/router'
 
 type Props = {
  opened: boolean
@@ -20,8 +23,8 @@ type Props = {
 
 const SideNav: FC<Props> = ({ opened }) => {
  const ref = useRef<HTMLDivElement>(null)
-  const { route } = useRouter()
-  const { t } = useTranslation('common')
+ const { route } = useRouter()
+ const { t } = useTranslation('common')
 
  useEffect(() => {
   if (ref.current)
@@ -35,10 +38,10 @@ const SideNav: FC<Props> = ({ opened }) => {
   <nav
    ref={ref}
    className='w-0 fixed top-0 left-0 transition-all duration-[.4s] h-screen lg:hidden flex flex-col mt-12 ml-24'>
-    <div className='inline-flex items-center p-4'>
-      <SSLogo className='w-8 h-8'/>
-      <h1 className='ml-2'>Samuele.</h1>
-    </div>
+   <div className='inline-flex items-center p-4'>
+    <SSLogo className='w-8 h-8' />
+    <h1 className='ml-2'>Samuele.</h1>
+   </div>
    <Link href='/home'>
     <a className='sidenav-row'>
      <HomeIcon />
@@ -57,22 +60,22 @@ const SideNav: FC<Props> = ({ opened }) => {
      {t('common:projects')}
     </a>
    </Link>
-    <div className='block md:hidden'>
+   <div className='block md:hidden'>
     <Link href={route} locale='en'>
-      <Link href={route} locale='en'>
-        <a className='menu-row'>
-          <USAIcon />
-          <p>{t('common:english')}</p>
-        </a>
-      </Link>
+     <Link href={route} locale='en'>
+      <a className='menu-row'>
+       <USAIcon />
+       <p>{t('common:english')}</p>
+      </a>
+     </Link>
     </Link>
     <Link href={route} locale='it'>
-      <a className='menu-row'>
-        <ItalyIcon />
-        <p>{t('common:italian')}</p>
-      </a>
+     <a className='menu-row'>
+      <ItalyIcon />
+      <p>{t('common:italian')}</p>
+     </a>
     </Link>
-    </div>
+   </div>
   </nav>,
   // @ts-ignore
   document.getElementById('side-nav')
