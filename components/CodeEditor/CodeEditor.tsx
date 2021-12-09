@@ -24,8 +24,7 @@ const CodeEditor = forwardRef<
  HTMLDivElement,
  Props
 >(({ readOnly, theme }, ref) => {
- const [code, setCode] =
-  useState<string>('')
+ const [code, setCode] = useState<string>('')
  let StyledTheme = useRef<JSX.Element>(
   THEMES[0].style
  )

@@ -7,5 +7,5 @@
   "arrowParens": "always",
   "bracketSpacing": true,
   "jsxBracketSameLine": true,
-  "printWidth": 40
+  "printWidth": 50
 }

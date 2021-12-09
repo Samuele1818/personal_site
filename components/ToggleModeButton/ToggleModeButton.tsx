@@ -1,20 +1,19 @@
 import {
  FC,
+ useContext,
  useLayoutEffect,
- useState,
 } from 'react'
 import {
  DarkThemeIcon,
  LightThemeIcon,
 } from '../../icons/icons'
+import { ThemeContext } from '../../lib/ThemeProvider/ThemeProvider'
 
 type Props = {}
 
-const ToggleModeButton: FC<Props> = (
- props
-) => {
- const [isDark, setIsDark] =
-  useState<boolean>(false)
+const ToggleModeButton: FC<Props> = (props) => {
+ const { isDark, toggleIsDark } =
+  useContext(ThemeContext)
  useLayoutEffect(() => {
   if (
    localStorage.theme === 'dark' ||
@@ -23,28 +22,24 @@ const ToggleModeButton: FC<Props> = (
      '(prefers-color-scheme: dark)'
     ).matches)
   ) {
-   setIsDark(true)
-   document.documentElement.classList.add(
-    'dark'
-   )
-  } else {
+   toggleIsDark(true)
    document.documentElement.classList.remove(
     'dark'
    )
+  } else {
+   document.documentElement.classList.add('dark')
   }
  }, [])
 
  const toggleDarkMode = () => {
   document.documentElement.classList.remove(
-   isDark ? 'dark' : 'light'
-  )
-  document.documentElement.classList.add(
    isDark ? 'light' : 'dark'
   )
-  localStorage.theme = isDark
-   ? 'light'
-   : 'dark'
-  setIsDark(!isDark)
+  document.documentElement.classList.add(
+   isDark ? 'dark' : 'light'
+  )
+  localStorage.theme = isDark ? 'light' : 'dark'
+  toggleIsDark(!isDark)
  }
 
  return (

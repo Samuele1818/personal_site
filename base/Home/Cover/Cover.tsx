@@ -1,10 +1,14 @@
 import {
  FC,
+ useContext,
  useEffect,
  useRef,
 } from 'react'
 import { useTranslation } from 'next-i18next'
-import CodeEditor from '../CodeEditor'
+import Section from '../../../components/Section'
+import { ThemeContext } from '../../../lib/ThemeProvider/ThemeProvider'
+import { timer } from '../../../utils/utils'
+import CodeEditor from '../../../components/CodeEditor'
 
 type Props = {}
 
@@ -13,35 +17,24 @@ const codeString =
 
 const Cover: FC<Props> = () => {
  const [t] = useTranslation('common')
- const editorRef =
-  useRef<HTMLDivElement>(null)
-
- const timer = (ms) =>
-  new Promise((res) =>
-   setTimeout(res, ms)
-  )
+ const editorRef = useRef<HTMLDivElement>(null)
+ const { isDark } = useContext(ThemeContext)
 
  const write = async () => {
-  for (
-   let i = 0;
-   i < codeString.length;
-   i++
-  ) {
+  for (let i = 0; i < codeString.length; i++) {
    // @ts-ignore
-   editorRef.current.addCode(
-    codeString[i]
-   )
-   await timer(300)
+   editorRef.current?.addCode(codeString[i])
+   await timer(200)
   }
  }
 
  useEffect(() => {
-  if (editorRef) write()
+  write()
  }, [editorRef])
 
  return (
-  <div className='w-full min-h-full flex py-24 px-16 from-primary-dark via-primary-default to-primary-dark bg-primary-default bg-gradient-to-tr'>
-   <section className='flex flex-col w-1/2'>
+  <Section className='bg-white dark:bg-background'>
+   <section className='flex flex-col w-full lg:w-1/2'>
     <h1 className='sm:text-center md:text-center lg:text-left'>
      {t('common:slogan')}
     </h1>
@@ -49,14 +42,14 @@ const Cover: FC<Props> = () => {
      {t('common:learn')}
     </h2>
    </section>
-   <section className='w-1/2'>
+   <section className='w-1/2 hidden lg:block'>
     <CodeEditor
      ref={editorRef}
-     theme='night-owl'
+     theme={isDark ? 'one-light' : 'night-owl'}
      readOnly={false}
     />
    </section>
-  </div>
+  </Section>
  )
 }
 

@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { TriangleIcon } from '../../icons/icons'
 
 type Props = {
  isOpen: boolean
@@ -13,7 +12,6 @@ const MenuWrapper: FC<Props> = ({
   <>
    {isOpen && (
     <ul className='menu absolute flex flex-col min-w-[100px]'>
-     <TriangleIcon className='' />
      {children}
     </ul>
    )}
