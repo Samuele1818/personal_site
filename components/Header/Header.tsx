@@ -101,7 +101,7 @@ export const Header: FC = () => {
      <ToggleModeButton />
      <div
       ref={languageMenuRef}
-      className='relative inline-flex items-center justify-center content-center'>
+      className='relative inline-flex items-center justify-center content-center hidden md:block'>
       <LanguagesIcon
        className='ml-4 cursor-pointer'
        onMouseDown={() =>

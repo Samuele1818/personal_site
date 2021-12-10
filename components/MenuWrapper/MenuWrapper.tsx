@@ -11,7 +11,7 @@ const MenuWrapper: FC<Props> = ({
  return (
   <>
    {isOpen && (
-    <ul className='menu absolute flex flex-col min-w-[100px]'>
+    <ul className='menu'>
      {children}
     </ul>
    )}

@@ -36,7 +36,7 @@ const Skills: FC<Props> = () => {
     <h1 className='tracking-tight'>
      Cosmonauts malfunction with alarm!
     </h1>
-    <p className='text-ship-gray text-opacity-80 font-light'>
+    <p className='text-shipGray text-opacity-80 font-light'>
      To the shredded raspberries add pickles,
      okra, sweet chili sauce and ground peanut
      butter.Advice, solitude and a meaningless

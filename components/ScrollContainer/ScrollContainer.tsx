@@ -6,7 +6,7 @@ const ScrollContainer: FC<Props> = ({
  children,
 }) => {
  return (
-  <div className='relative overflow-y-scroll scroll-snap-type-y-mandatory h-screen scroll-smooth'>
+  <div className='relative overflow-y-scroll snap-mandatory snap-y h-screen'>
    {children}
   </div>
  )

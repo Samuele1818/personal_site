@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import Section from '../../../components/Section'
 import { useTranslation } from 'next-i18next'
+import ProjectCard from "../../../components/ProjectCard";
 
 type Props = {}
 
@@ -12,7 +13,11 @@ const Projects: FC<Props> = () => {
     <h1>{t('common:projects')}</h1>
     <p>{t('cover:projects-text')}</p>
    </section>
-   <section></section>
+   <section>
+     <ProjectCard>
+       <img width='300' height='300' src='https://source.unsplash.com/random/1080x720/?wallpaper' />
+     </ProjectCard>
+   </section>
   </Section>
  )
 }

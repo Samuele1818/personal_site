@@ -33,22 +33,24 @@ const Cover: FC<Props> = () => {
  }, [editorRef])
 
  return (
-  <Section className='bg-white dark:bg-background'>
-   <section className='flex flex-col w-full lg:w-1/2'>
-    <h1 className='sm:text-center md:text-center lg:text-left'>
+  <Section className='bg-white dark:bg-background flex flex-col lg:flex-row'>
+   <div className='flex flex-col w-full lg:w-1/2'>
+    <h1 className='text-center lg:text-left'>
      {t('common:slogan')}
     </h1>
-    <h2 className='sm:text-center md:text-center lg:text-left'>
+    <h2 className='text-center lg:text-left'>
      {t('common:learn')}
     </h2>
-   </section>
-   <section className='w-1/2 hidden lg:block'>
+   </div>
+   <div className='w-full lg:w-1/2 mt-20 flex justify-center lg:mt-0'>
+    <div className='w-full'>{ /* Flex create bug with codemirror */}
     <CodeEditor
      ref={editorRef}
      theme={isDark ? 'one-light' : 'night-owl'}
      readOnly={false}
     />
-   </section>
+    </div>
+   </div>
   </Section>
  )
 }

@@ -37,7 +37,7 @@ const SideNav: FC<Props> = ({ opened }) => {
  return createPortal(
   <nav
    ref={ref}
-   className='w-0 fixed top-0 left-0 transition-all duration-[.4s] h-screen lg:hidden flex flex-col mt-12 ml-24'>
+   className='w-0 fixed top-0 left-0 transition-all duration-[.4s] h-screen lg:hidden flex flex-col mt-6 ml-12 md:ml-24'>
    <div className='inline-flex items-center p-4'>
     <SSLogo className='w-8 h-8' />
     <h1 className='ml-2'>Samuele.</h1>

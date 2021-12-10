@@ -10,10 +10,10 @@ module.exports = {
   extend: {
    colors: {
     background: '#1f1f1f',
-    'baltic-sea': '#29262B',
-    'ship-gray': '#3C3541',
-    'medium-purple': '#AC5FDB',
-    'biloba-flower': '#E3A2EE',
+    balticSea: '#29262B',
+    shipGray: '#3C3541',
+    mediumPurple: '#AC5FDB',
+    bilobaFlower: '#E3A2EE',
    },
   },
  },
