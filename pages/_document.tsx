@@ -12,7 +12,7 @@ class Document extends NextDocument {
    <Html>
     {/* Allows side nav rendering */}
     <nav id='side-nav' />
-    <Head />
+    <Head></Head>
     <body>
      <Main />
      <NextScript />

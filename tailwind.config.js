@@ -9,11 +9,9 @@ module.exports = {
  theme: {
   extend: {
    colors: {
-    background: '#1f1f1f',
-    balticSea: '#29262B',
-    shipGray: '#3C3541',
-    mediumPurple: '#AC5FDB',
-    bilobaFlower: '#E3A2EE',
+    codGray: '#1b1b1b',
+    electricViolet: '#6600FF',
+    caribbeanGreen: '#00CC99',
    },
   },
  },

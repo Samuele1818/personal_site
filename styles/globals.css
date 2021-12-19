@@ -13,7 +13,7 @@
   max-width: 100%;
   font-family: 'Fira Sans', sans-serif !important;
   overflow-x: hidden;
-  @apply dark:text-white text-black dark:bg-black scroll-smooth;
+  @apply scroll-smooth text-black dark:text-white;
  }
 
  svg {
@@ -54,6 +54,7 @@
   padding: 0;
  }
 
+ /* Customize to do transition on menu opening/closing */
  #__next {
   transition: margin-left 0.4s
     cubic-bezier(0.4, 0, 0.2, 1),
@@ -75,19 +76,28 @@
   color: inherit;
   text-decoration: none;
  }
-
+ 
  *,
  *::after,
  *::before {
   box-sizing: border-box;
  }
-}
-
-@layer utilities {
- .header-link {
-  @apply mx-2 relative capitalize;
+ 
+ .react-codemirror2 {
+  margin-top: 0;
+  height: 100%;
+  position: relative;
  }
-
+ 
+ .CodeMirror {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+ }
+ 
  .header-link::after,
  .sidenav-row::after {
   content: '';
@@ -100,21 +110,15 @@
   transition: opacity 300ms, transform 300ms;
   transform-origin: left;
   transform: scale(0);
-  @apply bg-mediumPurple;
+  @apply bg-electricViolet;
  }
-
+ 
  .header-link:hover::after,
  .sidenav-row:hover::after {
   opacity: 1;
   transform: scale(1);
  }
-
- .menu {
-  animation: opacityAnimation 0.2s ease 0s;
-  transform: translateX(-40px) translateY(15px);
-  @apply shadow-2xl dark:shadow-none bg-white dark:bg-balticSea rounded-[8px] absolute flex flex-col min-w-[80px] first:rounded-t-[8px] last:rounded-b-[8px];
- }
-
+ 
  .menu:after {
   bottom: 100%;
   left: 50%;
@@ -129,40 +133,37 @@
   border-width: 10px;
   margin-left: -10px;
   transform: translateX(10px);
-  @apply dark:border-b-balticSea border-b-white;
+  @apply dark:border-b-codGray border-b-white;
  }
-
- .menu-row {
-  @apply inline-flex items-center bg-white dark:bg-balticSea px-4 py-2 cursor-pointer capitalize rounded-[8px];
- }
-
- .menu-row svg {
-  margin-right: 1em;
- }
-
- .sidenav-row {
-  @apply inline-flex items-center px-4 py-4 cursor-pointer capitalize text-2xl relative;
- }
-
+ 
  .sidenav-row svg {
   width: 2em;
   height: 2em;
   margin-right: 0.5em;
  }
+ 
+ .menu-row svg {
+  margin-right: 1em;
+ }
+}
 
- .react-codemirror2 {
-  margin-top: 0;
-  height: 100%;
-  position: relative;
+@layer utilities {
+ .header-link {
+  @apply mx-2 relative capitalize;
  }
 
- .CodeMirror {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
+ .menu {
+  animation: opacityAnimation 0.2s ease 0s;
+  transform: translateX(-40px) translateY(15px);
+  @apply shadow-2xl dark:shadow-none bg-white dark:bg-codGray rounded-[8px] absolute flex flex-col min-w-[80px] first:rounded-t-[8px] last:rounded-b-[8px];
+ }
+
+ .menu-row {
+  @apply inline-flex items-center bg-white dark:bg-codGray px-4 py-2 cursor-pointer capitalize rounded-[8px];
+ }
+
+ .sidenav-row {
+  @apply inline-flex items-center px-4 py-4 cursor-pointer capitalize text-2xl relative;
  }
 }
 
