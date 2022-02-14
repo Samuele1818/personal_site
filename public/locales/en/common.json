@@ -1,7 +1,13 @@
 {
   "home": "home",
-  "skills": "skills",
   "projects": "projects",
-  "toggle-dark-mode": "Toggle dark mode",
-  "toggle-light-mode": "Toggle light mode"
+  "solve-your-problems": "solve your problem with competence",
+  "scroll-down": "known more about me",
+  "case-study": "case study",
+  "best-project": "best project",
+  "best-project-title": "this website",
+  "best-project-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt et ut sed feugiat libero nulla. Tristique tristique neque blandit elit lorem laoreet. Sagittis platea sollicitudin nulla pharetra, ac vitae.",
+  "about-me": "About me",
+  "about-me-title": "Samuele Sciatore",
+  "about-me-text": "Hi, I’m Samuele, a 17 years old Italian guy who loves programming, especially websites, and is trying to improve his UI/UX skills.\nI love to solve problems and work with others."
 }

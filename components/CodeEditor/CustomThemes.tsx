@@ -1,5 +1,5 @@
 export const THEMES = [
- {
+/* {
   id: 'night-owl',
   style: (
    <style jsx>{`
@@ -16,7 +16,6 @@ export const THEMES = [
     :global(.react-codemirror2 > .CodeMirror) {
      padding-top: 48px;
      background: #011627;
-     border-radius: 0.5rem;
     }
 
     :global(.CodeMirror-gutters) {
@@ -79,9 +78,9 @@ export const THEMES = [
      color: #7ea656;
     }
 
-    /*    :global(.cm-s-night-owl span.cm-bracket) {
+    /!*    :global(.cm-s-night-owl span.cm-bracket) {
                                        color: #ffffff;
-                                      }*/
+                                      }*!/
 
     :global(.cm-s-night-owl span.cm-tag) {
      color: #ff6363;
@@ -136,7 +135,7 @@ export const THEMES = [
     }
    `}</style>
   ),
- },
+ },*/
  {
   id: 'one-light',
   style: (
@@ -144,7 +143,7 @@ export const THEMES = [
     :global(.cm-s-one-light) {
      text-rendering: optimizeLegibility;
      font-family: 'Fira Code', monospace !important;
-     font-size: 14px;
+     font-size: 10px;
     }
 
     :global(.CodeMirror-selected) {
@@ -152,9 +151,8 @@ export const THEMES = [
     }
 
     :global(.react-codemirror2 > .CodeMirror) {
-     padding-top: 48px;
+     padding-top: 36px;
      background: #fff;
-     border-radius: 0.5rem;
     }
 
     :global(.CodeMirror-gutters) {

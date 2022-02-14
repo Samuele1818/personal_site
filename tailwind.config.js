@@ -9,9 +9,9 @@ module.exports = {
  theme: {
   extend: {
    colors: {
-    codGray: '#1b1b1b',
+    lavenderRose: '#FF9BFF',
     electricViolet: '#6600FF',
-    caribbeanGreen: '#00CC99',
+    puertoRico: '#3ABEAA',
    },
   },
  },

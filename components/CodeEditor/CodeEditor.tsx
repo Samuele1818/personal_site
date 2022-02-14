@@ -8,7 +8,7 @@ import {
 import { Controlled as CodeMirror } from 'react-codemirror2'
 import { THEMES } from './CustomThemes'
 import 'codemirror/lib/codemirror.css'
-import { WindowToolbarIcon } from '../../icons/icons'
+import { WindowToolbarIcon } from '../../public/icons/icons'
 
 if (typeof navigator !== 'undefined') {
  require('codemirror/mode/javascript/javascript')
@@ -37,6 +37,7 @@ const CodeEditor = forwardRef<
  }))
 
  const options = {
+  indentUnit: 1,
   smartIndent: true,
   mode: 'jsx',
   tabSize: 2,
@@ -45,7 +46,7 @@ const CodeEditor = forwardRef<
   theme: theme,
   lineNumbers: true,
   firstLineNumber: 1,
-  viewportMargin: Infinity,
+  viewportMargin: 15,
   lineWrapping: true,
  }
 
@@ -62,12 +63,11 @@ const CodeEditor = forwardRef<
  return (
   <div
    ref={ref}
-   className='relative rounded-lg shadow-2xl'>
-   <div className='absolute z-[2] ml-4 mt-4 rounded-lg'>
-    <WindowToolbarIcon className='w-[54px] h-[18px]' />
+   className='relative w-full h-full'>
+   <div className='absolute z-[2] ml-4 mt-4'>
+    <WindowToolbarIcon className='w-[24px] h-[8px]' />
    </div>
    <CodeMirror
-    className='rounded-lg'
     options={options}
     value={code}
     onBeforeChange={onChange}

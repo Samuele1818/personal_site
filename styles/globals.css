@@ -1,179 +1,93 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
- html,
- body {
-  padding: 0;
-  margin: 0;
-  max-width: 100%;
-  font-family: 'Fira Sans', sans-serif !important;
-  overflow-x: hidden;
-  @apply scroll-smooth text-black dark:text-white;
- }
-
- svg {
-  @apply fill-current text-black dark:text-white;
- }
-
- button,
- input,
- select,
- textarea {
-  margin: 0;
- }
-
- html,
- body,
- p,
- ol,
- ul,
- li,
- dl,
- dt,
- dd,
- blockquote,
- figure,
- fieldset,
- legend,
- textarea,
- pre,
- iframe,
- hr,
- h1,
- h2,
- h3,
- h4,
- h5,
- h6 {
-  margin: 0;
-  padding: 0;
- }
-
- /* Customize to do transition on menu opening/closing */
- #__next {
-  transition: margin-left 0.4s
-    cubic-bezier(0.4, 0, 0.2, 1),
-   transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow-x: hidden;
-  @apply shadow-2xl;
- }
-
- /* Make sure to have 100% height */
- html,
- body,
- body > div:first-child,
- div#__next {
-  height: 100%;
-  position: relative;
- }
-
- a {
-  color: inherit;
-  text-decoration: none;
- }
- 
- *,
- *::after,
- *::before {
-  box-sizing: border-box;
- }
- 
- .react-codemirror2 {
-  margin-top: 0;
-  height: 100%;
-  position: relative;
- }
- 
- .CodeMirror {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
- }
- 
- .header-link::after,
- .sidenav-row::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0.1em;
-  opacity: 0;
-  transition: opacity 300ms, transform 300ms;
-  transform-origin: left;
-  transform: scale(0);
-  @apply bg-electricViolet;
- }
- 
- .header-link:hover::after,
- .sidenav-row:hover::after {
-  opacity: 1;
-  transform: scale(1);
- }
- 
- .menu:after {
-  bottom: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: '';
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(213, 213, 213, 0);
-  border-bottom-color: #d5d5d5;
-  border-width: 10px;
-  margin-left: -10px;
-  transform: translateX(10px);
-  @apply dark:border-b-codGray border-b-white;
- }
- 
- .sidenav-row svg {
-  width: 2em;
-  height: 2em;
-  margin-right: 0.5em;
- }
- 
- .menu-row svg {
-  margin-right: 1em;
- }
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    font-family: 'Merriweather', serif;
+    overflow-x: hidden;
+    @apply scroll-smooth text-black bg-white;
+  }
+  
+  button,
+  input,
+  select,
+  textarea {
+    margin: 0;
+  }
+  
+  html,
+  body,
+  p,
+  ol,
+  ul,
+  li,
+  dl,
+  dt,
+  dd,
+  blockquote,
+  figure,
+  fieldset,
+  legend,
+  textarea,
+  pre,
+  iframe,
+  hr,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Customize to do transition on menu opening/closing */
+  #__next {
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+    @apply shadow-2xl;
+  }
+  
+  /* Make sure to have 100% height */
+  html,
+  body,
+  body > div:first-child,
+  div#__next {
+    height: 100%;
+    position: relative;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
 }
 
 @layer utilities {
- .header-link {
-  @apply mx-2 relative capitalize;
- }
-
- .menu {
-  animation: opacityAnimation 0.2s ease 0s;
-  transform: translateX(-40px) translateY(15px);
-  @apply shadow-2xl dark:shadow-none bg-white dark:bg-codGray rounded-[8px] absolute flex flex-col min-w-[80px] first:rounded-t-[8px] last:rounded-b-[8px];
- }
-
- .menu-row {
-  @apply inline-flex items-center bg-white dark:bg-codGray px-4 py-2 cursor-pointer capitalize rounded-[8px];
- }
-
- .sidenav-row {
-  @apply inline-flex items-center px-4 py-4 cursor-pointer capitalize text-2xl relative;
- }
-}
-
-/*used for menus*/
-@keyframes opacityAnimation {
- 0.0% {
-  opacity: 0;
- }
-
- 100% {
-  opacity: 100;
- }
+  .sm-header {
+    @apply text-sm text-electricViolet tracking-wide first-letter:uppercase;
+  }
+  
+  .lg-header {
+    @apply text-lg font-bold text-black tracking-widest first-letter:uppercase;
+  }
+  
+  .sm-text {
+    @apply text-sm text-black first-letter:uppercase;
+  }
 }

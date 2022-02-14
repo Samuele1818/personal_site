@@ -9,9 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-spring/parallax": "^9.3.2",
     "@react-spring/web": "^9.3.1",
-    "aos": "^2.3.4",
-    "classnames": "^2.3.1",
     "codemirror": "^5.64.0",
     "lodash.debounce": "^4.0.8",
     "next": "12.0.7",

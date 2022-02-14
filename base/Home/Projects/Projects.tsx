@@ -1,35 +1,37 @@
 import { FC } from 'react'
-import Section from '../../../components/Section'
-import { useTranslation } from 'next-i18next'
-import ProjectCard from '../../../components/ProjectCard'
-import ProjectsRight from '/public/svg/ProjectsRight.svg'
-import TextWrapper from "../../../components/TextWrapper";
+import ProjectContainer from '../../../components/ProjectContainer'
+import { CircleIcon } from "../../../public/icons/icons";
 
 type Props = {}
 
+const ProjectsList = [
+ {
+  subTitle: 'API Site',
+  title: 'First Project',
+  text:
+   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt et ut sed feugiat libero nulla. Tristique tristique neque blandit elit lorem laoreet. Sagittis platea sollicitudin nulla pharetra, ac vitae.',
+  image: '/images/1-project.png',
+  link: 'api',
+ },
+ {
+  subTitle: 'TODO List',
+  title: 'Second Project',
+  text:
+   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt et ut sed feugiat libero nulla. Tristique tristique neque blandit elit lorem laoreet. Sagittis platea sollicitudin nulla pharetra, ac vitae.',
+  image: '/images/2-project.png ',
+  link: 'todo',
+ },
+]
+
 const Projects: FC<Props> = () => {
- const { t } = useTranslation(['common', 'projects'])
  return (
-  <Section className='bg-white dark:bg-black'>
-   <section className='flex flex-col'>
-     <TextWrapper title={t('projects:projects')} text={t('projects:projects-text')} link='/projects' />
-   </section>
-   <section className='grid grid-cols-2 grid-rows-2 gap-4'>
-    <ProjectCard>
-     <p>AOH BUSINESS</p>
-    </ProjectCard>
-    <ProjectCard>
-      <p>AOH BUSINESS</p>
-    </ProjectCard>
-    <ProjectCard>
-      <p>AOH BUSINESS</p>
-    </ProjectCard>
-    <ProjectCard>
-     <p>AOH BUSINESS</p>
-    </ProjectCard>
-   </section>
-    <ProjectsRight className='absolute right-0 top-0 bottom-0 max-h-screen z-[0]' />
-  </Section>
+  <section className='w-full px-8 lg:px-16'>
+   {ProjectsList.map((item, index) => (
+    <div className='w-full inline-flex justify-between items-center'>
+     <ProjectContainer {...item} circle index={index} arraySize={ProjectsList.length}/>
+    </div>
+   ))}
+  </section>
  )
 }
 
