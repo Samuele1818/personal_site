@@ -15,8 +15,8 @@ const Home: NextPage = () => {
   <>
    <Header />
    <Hero />
-   <section className='relative mt-24 h-screen'>
-     <BestProjectFirstBlob width='25%' height='25%' className='absolute -top-16 -left-12 lg:-left-32' />
+   <section className='relative mt-24 h-screen w-full flex justify-start'>
+     <BestProjectFirstBlob width='25%' height='25%' className='absolute -top-16 -left-12 lg:-left-32 hidden lg:block' />
      <ProjectContainer
      link='/best-project'
      image='/images/best-project.png'
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
      title={t('best-project-title')}
      text={t('best-project-text')}
      rtl/>
-    <BestProjectSecondBlob width='50%' height='100%' className='absolute bottom-0 -right-24'/>
+    <BestProjectSecondBlob width='50%' height='100%' className='absolute bottom-12 -right-80 hidden lg:block'/>
    </section>
    <Projects />
    <AboutMe />

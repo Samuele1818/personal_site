@@ -2,6 +2,7 @@ import { FC } from 'react'
 import CTA from '../CTA'
 import { useTranslation } from 'next-i18next'
 import { CircleIcon } from '../../public/icons/icons'
+import ProjectsCurvedLine from '../../public/svg/ProjectsCurvedLine'
 
 type Props = {
  image: string
@@ -37,15 +38,15 @@ const Text: FC<TextProps> = ({
  return (
   <div
    className={`mt-16 ${
-    rtl && 'ml-auto mr-[25%]'
+    rtl && 'lg:ml-auto lg:mr-[10%]'
    } z-20`}>
    <h6 className='sm-header'>{subTitle}</h6>
    <h1 className='lg-header'>{title}</h1>
    <img
     src={image}
-    className='w-full h-16 mt-2 lg:hidden'
+    className='w-full h-[50%] mt-2 lg:hidden'
    />
-   <p className='mt-8 sm-text max-w-sm break-words whitespace-normal'>
+   <p className='mt-8 sm-text lg:max-w-sm break-words whitespace-normal'>
     {text}
    </p>
    <CTA
@@ -68,15 +69,15 @@ const ProjectContainer: FC<Props> = ({
  circle,
  arraySize,
 }) => {
+ const { t } = useTranslation('common')
+ const isLastElement = index === arraySize - 1
  return (
-  <div className='flex flex-col lg:flex-row lg:inline-flex relative w-full h-screen'>
+  <div className='flex flex-col lg:flex-row lg:inline-flex relative w-full h-screen px-8 lg:px-16'>
    {circle && (
     <div className='w-16 h-16 mt-16 mr-24 relative flex hidden lg:block'>
      <line
       className={`w-0.5 ${
-       index === arraySize - 1
-        ? 'h-52'
-        : 'h-screen'
+       isLastElement ? 'h-[28rem]' : 'h-screen'
       } bg-black ml-auto mr-auto absolute left-0 right-0`}
      />
      <CircleIcon
@@ -89,11 +90,16 @@ const ProjectContainer: FC<Props> = ({
      />
     </div>
    )}
-   {index === arraySize - 1 && (
-    <img
-     className='w-64 h-60 absolute -left-[12px] bottom-[25%] hidden lg:block'
-     src='/images/line-curved.png'
-    />
+   {isLastElement && (
+    <>
+     <ProjectsCurvedLine
+      width='100px'
+      height='150px'
+      className='absolute bottom-40 left-24'
+     />
+     <p className='text-electricViolet absolute bottom-28'>{t('four-new-ideas')}</p>
+     <p className='text-electricViolet absolute bottom-36 left-44'>{t('100-percent-energy')}</p>
+    </>
    )}
    {!rtl && (
     <Text
