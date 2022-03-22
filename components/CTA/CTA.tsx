@@ -1,32 +1,47 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
+import Spinner from '../Spinner'
 import { useRouter } from 'next/router'
-import { ArrowIcon } from "../../public/icons/icons";
 
 type Props = {
  text: string
-  classNames: string
  link?: string
+ className?: string
+ icon?: ReactNode
  onClick?: () => unknown
+ isLoading?: boolean
+ isError?: boolean
 }
 
 const CTA: FC<Props> = ({
  text,
-  classNames,
  link,
+ className,
+ icon,
  onClick,
+ isLoading,
+ isError,
 }) => {
  const { push } = useRouter()
 
  return (
   <button
-    type='submit'
-   className={`${classNames} text-white bg-electricViolet rounded-lg inline-flex items-center px-1 py-2 first-letter:uppercase`}
    onClick={() => {
     link && push(link)
     onClick && onClick()
-   }}>
-   {text}
-    <ArrowIcon className='ml-2' />
+   }}
+   className={`${
+    isError && 'opacity-50'
+   } bg-electricViolet first-letter:uppercase flex text-white py-2 px-4 rounded-lg items-center ${
+    isLoading && 'justify-center'
+   } ${className}`}>
+   {isLoading ? (
+    <Spinner />
+   ) : (
+    <>
+     {text}
+     <div className='ml-4'>{icon}</div>
+    </>
+   )}
   </button>
  )
 }

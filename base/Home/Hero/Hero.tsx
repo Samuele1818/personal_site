@@ -2,35 +2,26 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { ScrollDownIcon } from '../../../public/icons/icons'
 import MacMockup from '../../../public/svg/MacMockup'
-import CodeEditor from '../../../components/CodeEditor'
+import Editor from "../../../components/MonacoEditor/MonacoEditor";
 
 type Props = {}
 
 const Hero: FC<Props> = () => {
  const { t } = useTranslation('common')
  return (
-  <section className='w-full h-screen md:h-[500px] md:inline-flex relative'>
+  <section id='hero' className='w-full height md:inline-flex relative'>
    <div className='flex flex-col w-full h-full bg-electricViolet md:rounded-br-md lg:w-[52%] pt-32 px-8 lg:px-16'>
     <h1 className='tracking-tight max-w-[300px] mx-auto md:mx-0 font-bold text-center leading-snug md:text-left text-white text-4xl first-letter:uppercase'>
      {t('solve-your-problems')}
     </h1>
-    <div className='inline-flex cursor-pointer items-center my-8 mx-auto md:mx-0'>
+    <a href='#best-project' className='inline-flex cursor-pointer items-center my-8 mx-auto md:mx-0'>
      <ScrollDownIcon className='w-8 h-8' />
      <p className='ml-4 font-medium text-lavenderRose first-letter:uppercase'>
       {t('scroll-down')}
      </p>
-    </div>
+    </a>
    </div>
-   <MacMockup className='md:hidden absolute w-[80%] top-[60%] h-fit mx-auto left-10 right-0'>
-    <div
-     className='w-full h-full'
-     xmlns='http://www.w3.org/1999/xhtml'>
-     <CodeEditor
-      readOnly={false}
-      theme='one-light'
-     />
-    </div>
-   </MacMockup>
+   <MacMockup className='md:hidden absolute w-[80%] top-[60%] h-fit mx-auto left-10 right-0' />
    <div className='hidden md:block relative w-[48%]'>
     <svg
      width={121}
@@ -47,16 +38,7 @@ const Hero: FC<Props> = () => {
       d='M0 85.475L35.355 50.07l35.356 35.405-35.356 35.404z'
      />
     </svg>
-    <MacMockup className='absolute top-[20%] md:-left-[160px] md:w-[150%] lg:left-[20px] lg:w-[90%] h-fit'>
-     <div
-      className='w-full h-full'
-      xmlns='http://www.w3.org/1999/xhtml'>
-      <CodeEditor
-       readOnly={false}
-       theme='one-light'
-      />
-     </div>
-    </MacMockup>
+    <MacMockup className='absolute top-[20%] md:-left-[160px] md:w-[100%] lg:left-[20px] lg:w-[60%] mx-auto h-fit' />
    </div>
   </section>
  )

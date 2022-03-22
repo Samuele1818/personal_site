@@ -12,7 +12,7 @@
     max-width: 100%;
     font-family: 'Merriweather', serif;
     overflow-x: hidden;
-    @apply scroll-smooth text-black bg-white;
+    @apply text-black bg-white;
   }
   
   button,
@@ -66,15 +66,15 @@
     position: relative;
   }
   
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
   *,
   *::after,
   *::before {
     box-sizing: border-box;
+    @apply scroll-smooth;
+  }
+  
+  textarea:focus, input:focus {
+    outline: none;
   }
 }
 
@@ -83,11 +83,20 @@
     @apply text-sm text-electricViolet tracking-wide first-letter:uppercase;
   }
   
+  
   .lg-header {
     @apply text-lg font-bold text-black tracking-widest first-letter:uppercase;
   }
   
   .sm-text {
     @apply text-sm text-black first-letter:uppercase;
+  }
+  
+  .mt-s {
+    @apply mt-16;
+  }
+  
+  .height {
+    @apply md:h-[500px] h-screen;
   }
 }

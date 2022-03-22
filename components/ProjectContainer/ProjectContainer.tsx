@@ -50,7 +50,7 @@ const Text: FC<TextProps> = ({
     {text}
    </p>
    <CTA
-    classNames='mt-6'
+    className='mt-6'
     text={t('case-study')}
     link={link}
    />
@@ -70,9 +70,9 @@ const ProjectContainer: FC<Props> = ({
  arraySize,
 }) => {
  const { t } = useTranslation('common')
- const isLastElement = index === arraySize - 1
+ const isLastElement = index === arraySize! - 1
  return (
-  <div className='flex flex-col lg:flex-row lg:inline-flex relative w-full h-screen px-8 lg:px-16'>
+  <div className='h-full flex flex-col lg:flex-row inline-flex relative w-full px-8 lg:px-16'>
    {circle && (
     <div className='w-16 h-16 mt-16 mr-24 relative flex hidden lg:block'>
      <line
@@ -84,23 +84,23 @@ const ProjectContainer: FC<Props> = ({
       className='w-16 h-16 bg-white absolute z-20'
       foreignObject={
        <p className='text-black text-4xl w-full h-full flex justify-center content-center items-center'>
-        {index + 1}
+        {index! + 1}
        </p>
       }
      />
     </div>
    )}
-   {isLastElement && (
+{/*   {isLastElement && (
     <>
      <ProjectsCurvedLine
       width='100px'
       height='150px'
-      className='absolute bottom-40 left-24'
+      className='absolute bottom-36 left-24 hidden lg:block'
      />
-     <p className='text-electricViolet absolute bottom-28'>{t('four-new-ideas')}</p>
-     <p className='text-electricViolet absolute bottom-36 left-44'>{t('100-percent-energy')}</p>
+     <p className='hidden lg:block text-electricViolet absolute bottom-16'>{t('four-new-ideas')}</p>
+     <p className='hidden lg:block text-electricViolet absolute bottom-24 left-44'>{t('100-percent-energy')}</p>
     </>
-   )}
+   )}*/}
    {!rtl && (
     <Text
      subTitle={subTitle}

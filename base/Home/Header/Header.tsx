@@ -41,9 +41,9 @@ const Header: FC<Props> = () => {
           </nav>
        </div>
        <div className='hidden md:inline-flex md:px-8 md-w-[48%] lg:px-16 h-full py-4 items-center'>
-          <LinkedinIcon className='mr-4 cursor-pointer w-6 h-6' />
-          <GithubIcon className='mr-4 cursor-pointer w-6 h-6' />
-          <CodeSandBoxIcon className='mr-4 cursor-pointer w-6 h-6' />
+          <LinkedinIcon className='mr-4 fill-black cursor-pointer w-6 h-6' />
+          <GithubIcon className='mr-4 fill-black cursor-pointer w-6 h-6' />
+          <CodeSandBoxIcon className='mr-4 fill-black cursor-pointer w-6 h-6' />
        </div>
     </header>
   );

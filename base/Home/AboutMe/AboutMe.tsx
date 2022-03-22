@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 const AboutMe: FC = () => {
  const { t } = useTranslation('common')
  return (
-  <section className='w-full h-screen flex flex-col px-8 lg:px-16 md:justify-between md:inline-flex md:flex-row'>
+  <section id='about-me' className='w-full mt-s flex flex-col px-8 lg:px-16 md:justify-between md:inline-flex md:flex-row'>
    <div className='flex flex-col md:w-7/12 md:mt-[8%]'>
     <h6 className='sm-header'>{t('about-me')}</h6>
     <h1 className='lg-header'>

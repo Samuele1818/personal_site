@@ -25,9 +25,9 @@ const ProjectsList = [
 
 const Projects: FC<Props> = () => {
  return (
-  <section className='w-full'>
+  <section id='projects' className='w-full'>
    {ProjectsList.map((item, index) => (
-    <div className='w-full inline-flex justify-between items-center'>
+    <div className='md:h-[500px] relative w-full inline-flex justify-between items-center mt-s'>
      <ProjectContainer {...item} circle index={index} arraySize={ProjectsList.length}/>
     </div>
    ))}
