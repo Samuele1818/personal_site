@@ -9,7 +9,6 @@ import Projects from "./Projects";
 import BestProjectSecondBlob from "../../public/svg/BestProjectSecondBlob";
 import BestProjectFirstBlob from "../../public/svg/BestProjectFirstBlob";
 import Footer from "./Footer";
-import CodeEditor from "../../components/CodeEditor";
 
 const Home: NextPage = () => {
  const { t } = useTranslation('common')
