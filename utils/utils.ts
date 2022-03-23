@@ -1,6 +1,11 @@
 export const isDocumentDefined: boolean =
  typeof document !== 'undefined'
 
+export const timer = (ms) =>
+  new Promise((res) =>
+    setTimeout(res, ms)
+  )
+
 export const isEmptyString: (string: string) => boolean = (string: string) => string === ''
 
 export const isValidEmail: (email: string) => ({ errorText: string; error: boolean }) = (email: string) => {
