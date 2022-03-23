@@ -71,7 +71,7 @@ const ProjectContainer: FC<Props> = ({
 }) => {
  const { t } = useTranslation('common')
  const isLastElement = index === arraySize! - 1
- return (
+  return (
   <div className='h-full flex flex-col lg:flex-row inline-flex relative w-full px-8 lg:px-16'>
    {circle && (
     <div className='w-16 h-16 mt-16 mr-24 relative flex hidden lg:block'>
@@ -82,6 +82,7 @@ const ProjectContainer: FC<Props> = ({
      />
      <CircleIcon
       className='w-16 h-16 bg-white absolute z-20'
+       // @ts-ignore
       foreignObject={
        <p className='text-black text-4xl w-full h-full flex justify-center content-center items-center'>
         {index! + 1}
