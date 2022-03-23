@@ -3,13 +3,15 @@ import {
   forwardRef,
   ReactChild,
   useRef,
-  useState,
-} from 'react'
-import debounce from 'lodash.debounce'
-import composeRefs from '@seznam/compose-react-refs'
+  useState
+} from "react";
+import debounce from "lodash.debounce";
+import composeRefs from "@seznam/compose-react-refs";
+import { Property } from "csstype";
+import BorderColor = Property.BorderColor;
 
 type Props = {
-  elementType: 'input' | 'textarea'
+  elementType: "input" | "textarea"
   inputType?: string
   label?: string
   placeholder?: string
@@ -24,10 +26,8 @@ type Props = {
   }
 }
 
-const Input = forwardRef<
-  HTMLInputElement | HTMLTextAreaElement,
-  Props
->(
+const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement,
+  Props>(
   (
     {
       elementType,
@@ -39,31 +39,30 @@ const Input = forwardRef<
       labelClassname,
       children,
       checkErrorFunction,
-      errorInformation,
+      errorInformation
     },
     forwardedInputRef
   ) => {
-    const [isFocussed, setIsFocussed] = useState(false)
-
+    const [isFocussed, setIsFocussed] = useState(false);
+    
     const handleChange = debounce((value: string) => {
-      checkErrorFunction && checkErrorFunction(value)
-    }, 800)
-
-    const inputRef = useRef<HTMLInputElement>(null)
-
+      checkErrorFunction && checkErrorFunction(value);
+    }, 800);
+    
+    const inputRef = useRef<HTMLInputElement>(null);
+    
     const isFilled: boolean = inputRef.current
-      ? inputRef.current.value !== ''
-      : false
-
+      ? inputRef.current.value !== ""
+      : false;
+    
     return (
       <>
         {/* TODO: Adjust size of TextArea */}
         <div
           style={{
-            borderColor:
-              errorInformation?.error && isFilled
-                ? 'red'
-                : isFocussed && '#337CE9',
+            borderColor: (errorInformation?.error && isFilled
+              ? "red"
+              : isFocussed && "#337CE9") as BorderColor
           }}
           className={`cursor-text relative w-full h-12 border-solid border-[0.5px] px-4 py-2 bg-white shadow-shadow rounded-lg ${containerClassName}`}
           onClick={() => inputRef.current?.focus()}>
@@ -82,21 +81,21 @@ const Input = forwardRef<
               onChange: (v) =>
                 handleChange(v.currentTarget.value),
               onFocus: () => setIsFocussed(true),
-              onBlur: () => setIsFocussed(false),
+              onBlur: () => setIsFocussed(false)
             },
             null
           )}
         </div>
         {errorInformation.error && isFilled && (
-          <p className='relative text-red-500 text-md mt-2 '>
+          <p className="relative text-red-500 text-md mt-2 ">
             {errorInformation.errorText}
           </p>
         )}
       </>
-    )
+    );
   }
-)
+);
 
-Input.displayName = 'Input'
+Input.displayName = "Input";
 
-export default Input
+export default Input;
