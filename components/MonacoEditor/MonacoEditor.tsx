@@ -25,9 +25,9 @@ const MonacoEditor: FC = () => {
   
   const write = async () => {
     for (let i = 0; i < CPPCode.length; i++) {
-      await timer(50);
+      await timer(10);
       insertBullet(CPPCode[i]);
-      await timer(50);
+      await timer(10);
     }
   };
   
@@ -46,7 +46,9 @@ const MonacoEditor: FC = () => {
         onMount={(editor) => {
           monaco.current = editor;
           monaco.current.focus();
-          write();
+          write().then(() => {
+      
+          });
         }}
         defaultLanguage="cpp"
         theme="vs"
