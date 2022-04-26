@@ -9,7 +9,6 @@ const useOnClickOutside: (
 ) => {
  useEffect(
   () => {
-   //@ts-ignore
    const listener = (event) => {
     // Do nothing if clicking ref's element or descendent elements
     if (

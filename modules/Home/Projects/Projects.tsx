@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import ProjectContainer from '../../../components/ProjectContainer'
-import { CircleIcon } from "../../../public/icons/icons";
 
 type Props = {}
 
@@ -25,11 +24,16 @@ const ProjectsList = [
 
 const Projects: FC<Props> = () => {
  return (
-  <section id='projects' className='w-full'>
+  <section
+   id='projects'
+   className='relative w-full'>
    {ProjectsList.map((item, index) => (
-    <div className='md:h-[500px] relative w-full inline-flex justify-between items-center mt-s'>
-     <ProjectContainer {...item} circle index={index} arraySize={ProjectsList.length}/>
-    </div>
+    <ProjectContainer
+     {...item}
+     circle
+     index={index}
+     arraySize={ProjectsList.length}
+    />
    ))}
   </section>
  )

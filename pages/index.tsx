@@ -1,5 +1,5 @@
-import Home from '../base/Home'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Home from "../modules/Home";
 
 export default Home
 
@@ -10,7 +10,7 @@ export const getStaticProps = async ({
  return {
   props: {
    ...(await serverSideTranslations(locale, [
-    'common'
+    'common',
    ])),
   },
  }

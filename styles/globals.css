@@ -12,6 +12,7 @@
     max-width: 100%;
     font-family: 'Merriweather', serif;
     overflow-x: hidden;
+    height: 100%;
     @apply text-black bg-white;
   }
   
@@ -62,7 +63,7 @@
   body,
   body > div:first-child,
   div#__next {
-    height: 100%;
+    height: auto;
     position: relative;
   }
   
@@ -82,7 +83,6 @@
   .sm-header {
     @apply text-sm text-electricViolet tracking-wide first-letter:uppercase;
   }
-  
   
   .lg-header {
     @apply text-lg font-bold text-black tracking-widest first-letter:uppercase;

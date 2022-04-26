@@ -10,9 +10,12 @@ class Document extends NextDocument {
  render() {
   return (
    <Html>
-    {/* Allows side nav rendering */}
+    {/*
+       Modify document structure to allows sidebar rendering
+       TODO: Implement sidebar menu for mobile devices
+     */}
     <nav id='side-nav' />
-    <Head></Head>
+     <Head><title></title></Head>
     <body>
      <Main />
      <NextScript />

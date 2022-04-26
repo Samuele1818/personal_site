@@ -10,6 +10,7 @@ const useToggle: (
    ? initialState
    : false
  )
+ // Invert current state or, if given, set the chosen state
  const toggle: (condition?: boolean) => void =
   useCallback((condition) => {
    setState((prevState) =>
