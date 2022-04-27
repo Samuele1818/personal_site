@@ -5,17 +5,17 @@ import NextDocument, {
  NextScript,
 } from 'next/document'
 import React from 'react'
+import Sidebar from "../components/Sidebar";
 
 class Document extends NextDocument {
  render() {
   return (
    <Html>
-    {/*
-       Modify document structure to allows sidebar rendering
-       TODO: Implement sidebar menu for mobile devices
-     */}
-    <nav id='side-nav' />
-     <Head><title></title></Head>
+    {/* Modify document structure to allows sidebar rendering */}
+    <Sidebar />
+    <Head>
+     <title></title>
+    </Head>
     <body>
      <Main />
      <NextScript />
