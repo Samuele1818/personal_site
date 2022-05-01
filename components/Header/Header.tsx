@@ -17,34 +17,54 @@ const Header: FC = () => {
  useEffect(() => {
   const element =
    document.getElementById('__next')
-  if (element) {
-   element.style.transform = isSidebar ? 'scaleY(0.8)' : ''
+  const el = document.getElementById('sidebar')
+  if (element && el) {
+   el.style.display = isSidebar ? 'block' : 'none'
+   element.style.transform = isSidebar
+    ? 'scaleY(0.8)'
+    : ''
    element.style.left = isSidebar ? '60%' : '0'
+   
    document.documentElement.style.overflow =
     isSidebar ? 'hidden' : 'auto'
   }
  }, [isSidebar])
 
  // https://stackoverflow.com/questions/60540985/react-usestate-doesnt-update-in-window-events
- const listener = (e: Event) => {
+ const mouseDownListener = (e: Event) => {
   // Fix typescript error "Property 'id' does not exist on type 'EventTarget'"
   const t = e.target as HTMLDivElement
   toggleSidebar((isSidebar) => {
    // if clicked item is the toggle button, open sidebar
-   if(t == null) return false
-   if (t.id == 'sidebar-toggle')
-    return true
+   if (t == null) return false
+   if (t.id == 'sidebar-toggle') return true
    // if clicked item id differ from 'sidebar' and sidebar is open, close it
    return isSidebar && t.id == 'sidebar'
   })
  }
 
+ const resizeListener = () => {
+  if (window.outerWidth >= 768) toggleSidebar(false)
+ }
+
  useEffect(() => {
-  document.addEventListener('mousedown', listener)
+  document.addEventListener(
+   'mousedown',
+   mouseDownListener
+  )
+  window.addEventListener(
+   'resize',
+   resizeListener,
+    true
+  )
   return () => {
    document.removeEventListener(
     'mousedown',
-    listener
+     mouseDownListener
+   )
+   window.removeEventListener(
+    'resize',
+    resizeListener
    )
   }
  }, [])
@@ -57,7 +77,7 @@ const Header: FC = () => {
     </h1>
     <HamburgerMenuIcon
      id='sidebar-toggle'
-     className='md:hidden cursor-pointer w-6 h-6 text-white fill-current'
+     className='md:hidden cursor-pointer w-4 h-4 text-white fill-current'
     />
     <nav className='hidden md:inline-block'>
      <ul className='inline-flex items-center'>
