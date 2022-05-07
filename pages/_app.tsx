@@ -11,8 +11,9 @@ const MyApp = ({
 }: AppProps) => {
  useEffect(() => {
   AOS.init({
+   debounceDelay: 50,
    once: false,
-   mirror: true
+   mirror: true,
   })
  }, [])
  return <Component {...pageProps} />

@@ -541,3 +541,42 @@ export const SendIcon = (
   </svg>
  )
 }
+
+export const DecorationRhombusIcon = (
+ props: SVGProps<SVGSVGElement>
+) => {
+ return (
+  <svg
+   width='1em'
+   height='1em'
+   viewBox='0 0 20 24'
+   fill='none'
+   xmlns='http://www.w3.org/2000/svg'
+   {...props}>
+   <path
+    opacity={0.4}
+    d='M8.356 1.375a2 2 0 013.288 0l6.568 9.487a2 2 0 010 2.276l-6.568 9.487a2 2 0 01-3.288 0l-6.568-9.487a2 2 0 010-2.276l6.568-9.487z'
+    stroke='#FF9BFF'
+   />
+  </svg>
+ )
+}
+
+export const DecorationStarIcon = (
+ props: SVGProps<SVGSVGElement>
+) => {
+ return (
+  <svg
+   width='1em'
+   height='1em'
+   viewBox='0 0 36 36'
+   fill='none'
+   xmlns='http://www.w3.org/2000/svg'
+   {...props}>
+   <path
+    d='M16.014 2.739c.28-2.353 3.693-2.353 3.972 0L21.21 13.04a2 2 0 001.75 1.75l10.302 1.223c2.353.28 2.353 3.693 0 3.972L22.96 21.21a2 2 0 00-1.75 1.75L19.986 33.26c-.28 2.353-3.693 2.353-3.972 0L14.79 22.96a2 2 0 00-1.75-1.75L2.74 19.986c-2.353-.28-2.353-3.693 0-3.972L13.04 14.79a2 2 0 001.75-1.75L16.014 2.74z'
+    stroke='#60F'
+   />
+  </svg>
+ )
+}

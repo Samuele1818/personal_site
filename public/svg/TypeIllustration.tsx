@@ -1,8 +1,8 @@
-import * as React from 'react'
+import { SVGProps } from "react";
 
-function TypeIllustration(
- props: React.SVGProps<SVGSVGElement>
-) {
+const TypeIllustration = (
+ props: SVGProps<SVGSVGElement>
+) => {
  return (
   <svg
    fill='none'
