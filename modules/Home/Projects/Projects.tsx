@@ -26,7 +26,7 @@ const Projects: FC<Props> = () => {
  return (
   <section
    id='projects'
-   className='relative w-full'>
+   className='relative w-full mt-'>
    {ProjectsList.map((item, index) => (
     <ProjectContainer
      {...item}
