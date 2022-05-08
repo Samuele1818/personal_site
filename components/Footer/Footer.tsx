@@ -123,7 +123,7 @@ const Footer: FC<Props> = () => {
     </Link>
    </section>
    <FooterDecoration className='hidden md:block absolute right-0 bottom-0 w-96 h-96' />
-   <FooterDecorationSM className='md:hidden absolute right-0 bottom-0 w-[10.5rem] h-40' />
+   <FooterDecorationSM className='md:hidden absolute right-0 bottom-0 w-40 h-40' />
   </footer>
  )
 }

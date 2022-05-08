@@ -33,6 +33,7 @@ type Props = {
  children?: ReactNode
 }
 
+//TODO: Add auto resize on textarea
 const Input = forwardRef<
  HTMLInputElement | HTMLTextAreaElement,
  Props
@@ -71,7 +72,6 @@ const Input = forwardRef<
 
   return (
    <>
-    {/* TODO: Adjust size of TextArea */}
     <div
      style={{
       borderColor: (statusInformation?.error &&
@@ -79,7 +79,7 @@ const Input = forwardRef<
        ? 'red'
        : isFocussed && '#337CE9') as BorderColor,
      }}
-     className={`cursor-text relative w-full h-12 border-solid border-[0.5px] px-4 py-2 bg-white shadow-shadow rounded-lg ${containerClassName}`}
+     className={`cursor-text relative w-full h-fit border-solid border-[0.5px] px-4 py-2 bg-white shadow-shadow rounded-lg ${containerClassName}`}
      onClick={() => inputRef.current?.focus()}>
      <label
       className={`absolute left-0 -top-6 z-20 ${labelClassname}`}>
@@ -90,7 +90,7 @@ const Input = forwardRef<
       elementType,
       {
        placeholder: placeholder,
-       className: `w-full h-full text-black ${inputClassname}`,
+       className: `w-full min-h-fit h-fit resize-y text-black ${inputClassname}`,
        type: inputType,
        ref: composeRefs(
         forwardedInputRef,
@@ -105,7 +105,7 @@ const Input = forwardRef<
      )}
     </div>
     {statusInformation.error && isFilled && (
-     <p className='relative text-red-500 text-md mt-2 '>
+     <p style={{ maxWidth: inputRef.current?.offsetWidth }} className='relative break-words text-red-500 text-md mt-2 '>
       {statusInformation.text}
      </p>
     )}
