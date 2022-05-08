@@ -99,9 +99,9 @@ const MacMockup = (
      d='M9.02 15.602h350.96v217.604H9.02z'
     />
     <foreignObject
-     x='8'
-     y='15'
-     width='86%'
+     x='9'
+     y='12'
+     width='85.5%'
      height='85%'
      className='relative'>
      <MonacoEditor />
