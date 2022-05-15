@@ -56,13 +56,14 @@
     /* Hide sidebar */
     z-index: 2;
     /* Make sure that background is white to hide body background (and sidebar) */
-    background: #000;
+    background: #fff;
     transition: right 0.2s ease-in,
     transform .8s cubic-bezier(.2,1,.3,1);
     /* Set the transform origin to scale content when open sidebar */
-    transform-origin: right 5rem;
-    height: 45rem !important;
-    overflow: hidden !important;
+    transform-origin: right;
+    /* Scale content correctly */
+    height: 100vh !important;
+    overflow-x: hidden;
   }
   
   /* Make sure to have 100% height */

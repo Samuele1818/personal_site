@@ -14,7 +14,7 @@ const Sidebar: FC = () => {
   <nav
    id='sidebar'
    className='absolute h-full w-full z-1'>
-   <ul className='translate-x-[60%] mt-[40%] flex flex-col'>
+   <ul className='translate-x-[60%] mt-36 flex flex-col'>
     <li className='sidebar-li'>
      <Link href='/'>
       <a className='sidebar-link'>{t('home')}</a>

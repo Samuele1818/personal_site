@@ -7,7 +7,7 @@ import {
  LinkedinIcon,
 } from '../../public/svg/icons/icons'
 import { useTranslation } from 'next-i18next'
-import { MD_SIZE } from "../../utils/utils";
+import { MD_SIZE } from '../../utils/utils'
 
 const Header: FC = () => {
  const { t } = useTranslation('common')
@@ -21,13 +21,18 @@ const Header: FC = () => {
   if (nextContainer) {
    // Make animation
    nextContainer.style.transform = isSidebar
-    ? 'scale(1, 0.835) translateX(-60%)'
+    ? 'scaleY(0.8) translateX(-50%)'
     : ''
    // Change cursor to pointer when sidebar is open on page container hovering
-   nextContainer.style.cursor = isSidebar ? 'pointer' : 'inherit'
+   nextContainer.style.cursor = isSidebar
+    ? 'pointer'
+    : 'inherit'
    // Disallow page scrolling
-   document.documentElement.style.overflow =
+   document.documentElement.style.overflowY =
     isSidebar ? 'hidden' : 'auto'
+   nextContainer.style.overflowY = isSidebar
+    ? 'hidden'
+    : 'auto'
   }
  }, [isSidebar])
 
@@ -47,7 +52,8 @@ const Header: FC = () => {
 
  const resizeListener = () => {
   // If page width is greater or equal to medium size, close sidebar
-  if (window.outerWidth >= MD_SIZE)  toggleSidebar(false)
+  if (window.outerWidth >= MD_SIZE)
+   toggleSidebar(false)
  }
 
  useEffect(() => {
