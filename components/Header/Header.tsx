@@ -7,6 +7,7 @@ import {
  LinkedinIcon,
 } from '../../public/svg/icons/icons'
 import { useTranslation } from 'next-i18next'
+import { MD_SIZE } from "../../utils/utils";
 
 const Header: FC = () => {
  const { t } = useTranslation('common')
@@ -15,16 +16,16 @@ const Header: FC = () => {
   useState<boolean>(false)
 
  useEffect(() => {
-  const element =
+  const nextContainer =
    document.getElementById('__next')
-  const el = document.getElementById('sidebar')
-  if (element && el) {
-   el.style.display = isSidebar ? 'block' : 'none'
-   element.style.transform = isSidebar
-    ? 'scaleY(0.8)'
+  if (nextContainer) {
+   // Make animation
+   nextContainer.style.transform = isSidebar
+    ? 'scale(1, 0.835) translateX(-60%)'
     : ''
-   element.style.left = isSidebar ? '60%' : '0'
-   
+   // Change cursor to pointer when sidebar is open on page container hovering
+   nextContainer.style.cursor = isSidebar ? 'pointer' : 'inherit'
+   // Disallow page scrolling
    document.documentElement.style.overflow =
     isSidebar ? 'hidden' : 'auto'
   }
@@ -35,16 +36,18 @@ const Header: FC = () => {
   // Fix typescript error "Property 'id' does not exist on type 'EventTarget'"
   const t = e.target as HTMLDivElement
   toggleSidebar((isSidebar) => {
-   // if clicked item is the toggle button, open sidebar
+   // If t is null, close sidebar
    if (t == null) return false
-   if (t.id == 'sidebar-toggle') return true
+   // if clicked item is the toggle button, toggle sidebar
+   if (t.id == 'sidebar-toggle') return !isSidebar
    // if clicked item id differ from 'sidebar' and sidebar is open, close it
    return isSidebar && t.id == 'sidebar'
   })
  }
 
  const resizeListener = () => {
-  if (window.outerWidth >= 768) toggleSidebar(false)
+  // If page width is greater or equal to medium size, close sidebar
+  if (window.outerWidth >= MD_SIZE)  toggleSidebar(false)
  }
 
  useEffect(() => {
@@ -55,12 +58,12 @@ const Header: FC = () => {
   window.addEventListener(
    'resize',
    resizeListener,
-    true
+   true
   )
   return () => {
    document.removeEventListener(
     'mousedown',
-     mouseDownListener
+    mouseDownListener
    )
    window.removeEventListener(
     'resize',

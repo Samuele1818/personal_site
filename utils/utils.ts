@@ -1,3 +1,5 @@
+export const MD_SIZE = 768
+
 export const timer = (ms: number) =>
  new Promise((res) => setTimeout(res, ms))
 
