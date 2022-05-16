@@ -1,4 +1,9 @@
-import { FC, useEffect, useState } from 'react'
+import {
+ FC,
+ useEffect,
+ useRef,
+ useState,
+} from 'react'
 import Link from 'next/link'
 import {
  CodeSandBoxIcon,
@@ -7,7 +12,7 @@ import {
  LinkedinIcon,
 } from '../../public/svg/icons/icons'
 import { useTranslation } from 'next-i18next'
-import { MD_SIZE } from '../../utils/utils'
+import { MD_SIZE, timer } from "../../utils/utils";
 
 const Header: FC = () => {
  const { t } = useTranslation('common')
@@ -15,11 +20,36 @@ const Header: FC = () => {
  const [isSidebar, toggleSidebar] =
   useState<boolean>(false)
 
+ const headerRef = useRef<HTMLHeadElement>(null)
+ 
+ // Cache old scroll value to detect scroll direction
+ const lastScrollTop = useRef<number>(0);
+ 
+ const onScroll = () => {
+  if(!headerRef.current) return
+  // Check scroll direction based on old scroll value,
+  // if scrolling up make header position fixed, else absolute
+  // also change top to do enter and exit animation
+  if(scrollY > lastScrollTop.current) {
+   headerRef.current.style.position = 'absolute'
+   headerRef.current.style.top = '-50px'
+  } else {
+   headerRef.current.style.position = 'fixed'
+   headerRef.current.style.top = '0px'
+  }
+  // Update last scroll position
+  lastScrollTop.current = scrollY <= 0 ? 0 : scrollY
+  // Add background when header is not on page top
+  if(scrollY > headerRef.current.scrollHeight * 2) headerRef.current.classList.add('bg-electricViolet')
+  else headerRef.current.classList.remove('bg-electricViolet')
+ }
+
  useEffect(() => {
   const nextContainer =
    document.getElementById('__next')
-  const closeButton =
-   document.getElementById('close-sidebar')
+  const closeButton = document.getElementById(
+   'close-sidebar'
+  )
   if (nextContainer && closeButton) {
    // Make animation
    nextContainer.style.transform = isSidebar
@@ -70,6 +100,10 @@ const Header: FC = () => {
    resizeListener,
    true
   )
+  window.addEventListener(
+   'scroll',
+   onScroll
+  )
   return () => {
    document.removeEventListener(
     'mousedown',
@@ -79,11 +113,14 @@ const Header: FC = () => {
     'resize',
     resizeListener
    )
+   window.addEventListener('scroll', onScroll)
   }
  }, [])
 
  return (
-  <header className='z-10 absolute inline-flex justify-between items-center w-full'>
+  <header
+   ref={headerRef}
+   className='z-50 background-transition top-transition absolute inline-flex justify-between items-center w-full'>
    <div className='px-8 lg:pl-16 lg:pr-4 h-full py-4 w-full md:w-[70%] lg:w-[52%] inline-flex items-center justify-between'>
     <h1 className='text-lavenderRose text-lg font-light'>
      Samuele Sciatore
