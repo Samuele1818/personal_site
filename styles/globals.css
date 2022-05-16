@@ -139,4 +139,8 @@
   .height {
     @apply md:h-[500px] h-screen;
   }
+  
+  .scale-transition {
+    transition: all 0.45s cubic-bezier(.15,.2,.1,1);
+  }
 }

@@ -18,7 +18,9 @@ const Header: FC = () => {
  useEffect(() => {
   const nextContainer =
    document.getElementById('__next')
-  if (nextContainer) {
+  const closeButton =
+   document.getElementById('close-sidebar')
+  if (nextContainer && closeButton) {
    // Make animation
    nextContainer.style.transform = isSidebar
     ? 'scaleY(0.8) translateX(-50%)'
@@ -27,6 +29,8 @@ const Header: FC = () => {
    nextContainer.style.cursor = isSidebar
     ? 'pointer'
     : 'inherit'
+   // Make close button animation
+   closeButton.style.scale = isSidebar ? '1' : '0'
    // Disallow page scrolling
    document.documentElement.style.overflowY =
     isSidebar ? 'hidden' : 'auto'
