@@ -16,6 +16,10 @@
     @apply text-black bg-white;
   }
   
+  body {
+    overflow: hidden;
+  }
+  
   button,
   input,
   select,

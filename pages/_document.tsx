@@ -11,7 +11,6 @@ class Document extends NextDocument {
  render() {
   return (
    <Html>
-    {/* Modify document structure to allows sidebar rendering */}
     <Head>
      <title></title>
     </Head>

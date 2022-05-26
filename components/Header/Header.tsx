@@ -21,28 +21,6 @@ const Header: FC = () => {
   useState<boolean>(false)
 
  const headerRef = useRef<HTMLHeadElement>(null)
- 
- // Cache old scroll value to detect scroll direction
- const lastScrollTop = useRef<number>(0);
- 
- const onScroll = () => {
-  if(!headerRef.current) return
-  // Check scroll direction based on old scroll value,
-  // if scrolling up make header position fixed, else absolute
-  // also change top to do enter and exit animation
-  if(scrollY > lastScrollTop.current) {
-   headerRef.current.style.position = 'absolute'
-   headerRef.current.style.top = '-50px'
-  } else {
-   headerRef.current.style.position = 'fixed'
-   headerRef.current.style.top = '0px'
-  }
-  // Update last scroll position
-  lastScrollTop.current = scrollY <= 0 ? 0 : scrollY
-  // Add background when header is not on page top
-  if(scrollY > headerRef.current.scrollHeight * 2) headerRef.current.classList.add('bg-electricViolet')
-  else headerRef.current.classList.remove('bg-electricViolet')
- }
 
  useEffect(() => {
   const nextContainer =
@@ -59,7 +37,7 @@ const Header: FC = () => {
    nextContainer.style.cursor = isSidebar
     ? 'pointer'
     : 'inherit'
-   // Make close button animation
+   // Make open/close button animation
    closeButton.style.scale = isSidebar ? '1' : '0'
    // Disallow page scrolling
    document.documentElement.style.overflowY =
@@ -100,10 +78,6 @@ const Header: FC = () => {
    resizeListener,
    true
   )
-  window.addEventListener(
-   'scroll',
-   onScroll
-  )
   return () => {
    document.removeEventListener(
     'mousedown',
@@ -113,7 +87,6 @@ const Header: FC = () => {
     'resize',
     resizeListener
    )
-   window.addEventListener('scroll', onScroll)
   }
  }, [])
 
