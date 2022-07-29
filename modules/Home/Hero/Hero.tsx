@@ -1,8 +1,8 @@
-import { FC } from 'react'
-import { useTranslation } from 'next-i18next'
-import { ScrollDownIcon } from '../../../public/svg/icons/icons'
-import MacMockup from '../../../public/svg/MacMockup'
-import Defs from '../../../public/svg/Defs'
+import { FC } from "react";
+import { useTranslation } from "next-i18next";
+import { ScrollDownIcon } from "../../../public/svg/icons/icons";
+import MacMockup from "../../../public/svg/MacMockup";
+import Defs from "../../../public/svg/Defs";
 
 // TODO: Change text based on the editor code
 const Hero: FC = () => {

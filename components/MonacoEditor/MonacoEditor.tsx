@@ -1,45 +1,87 @@
-import { FC, useRef } from 'react'
+import { FC, useRef, useState } from "react";
 import { WindowToolbarIcon } from '../../public/svg/icons/icons'
-import { timer } from '../../utils/utils'
 import Editor, {
  Monaco,
 } from '@monaco-editor/react'
+import { transform } from '@babel/standalone'
+
+import { importsRegex, pureRegex, replace } from "../../utils/utils";
+
+function transpileCode(code: string) {
+  // ignore imports so Babel doesn't transpile it
+  const codeToTranspile = replace(code, importsRegex)
+  // the magic sauce used to transpile the code
+  const options = { presets: ['es2015-loose', 'react'] }
+  const { code: transpiledCode } = transform(codeToTranspile, options)
+  
+  if (!transpiledCode) {
+    // syntax errors get caught by the `error` listener
+    throw new Error(`Something went wrong transpiling ${codeToTranspile}.`)
+  }
+  
+  const hasImports = Boolean(code.match(importsRegex))
+  const imports = code.match(importsRegex)?.join('\n') ?? ''
+  
+  return {
+    // this is passed to `updateIframe`
+    iframeCode: hasImports ? `${imports}\n${transpiledCode}` : transpiledCode,
+    // this is passed to `updateSource`
+    // ignore /*#__PURE__*/ from transpiled output to reduce noise
+    sourceCode: replace(transpiledCode, pureRegex),
+  }
+}
+
 
 const MonacoEditor: FC = () => {
- const CPPCode =
-  '\x64\x6f\x75\x62\x6c\x65\x20\x61\x76\x65\x72\x61\x67\x65\x28\x76\x65\x63\x74\x6f\x72\x3c\x69\x6e\x74\x3e\x20\x26\x73\x61\x6c\x61\x72\x79\x29\x20\x7b\x0a\x20\x20\x20\x20\x69\x6e\x74\x20\x6d\x61\x78\x20\x3d\x20\x73\x61\x6c\x61\x72\x79\x2e\x61\x74\x28\x30\x29\x2c\x20\x6d\x69\x6e\x20\x3d\x20\x73\x61\x6c\x61\x72\x79\x2e\x61\x74\x28\x30\x29\x2c\x20\x73\x75\x6d\x20\x3d\x20\x30\x3b\x0a\x20\x20\x20\x20\x66\x6f\x72\x20\x28\x69\x6e\x74\x20\x26\x69\x3a\x20\x73\x61\x6c\x61\x72\x79\x29\x20\x7b\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x6d\x61\x78\x20\x3d\x20\x6d\x61\x78\x28\x6d\x61\x78\x2c\x20\x69\x29\x3b\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x6d\x69\x6e\x20\x3d\x20\x6d\x69\x6e\x28\x6d\x69\x6e\x2c\x20\x69\x29\x3b\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x73\x75\x6d\x20\x2b\x3d\x20\x69\x3b\x0a\x20\x20\x20\x20\x7d\x0a\x20\x20\x20\x20\x63\x6f\x75\x74\x20\x3c\x3c\x20\x6d\x61\x78\x20\x3c\x3c\x20\x65\x6e\x64\x6c\x3b\x0a\x20\x20\x20\x20\x63\x6f\x75\x74\x20\x3c\x3c\x20\x6d\x69\x6e\x20\x3c\x3c\x20\x65\x6e\x64\x6c\x3b\x0a\x20\x20\x20\x20\x73\x75\x6d\x20\x2d\x3d\x20\x6d\x61\x78\x3b\x0a\x20\x20\x20\x20\x73\x75\x6d\x20\x2d\x3d\x20\x6d\x69\x6e\x3b\x0a\x20\x20\x20\x20\x72\x65\x74\x75\x72\x6e\x20\x28\x64\x6f\x75\x62\x6c\x65\x29\x73\x75\x6d\x20\x2f\x20\x28\x73\x61\x6c\x61\x72\x79\x2e\x73\x69\x7a\x65\x28\x29\x20\x2d\x20\x32\x29\x3b\x0a\x7d'
-
- const monaco = useRef<Monaco>()
-
- const insertBullet = (text: string) => {
-  if (monaco.current) {
-   monaco.current.executeEdits('', [
-    {
-     range: {
-      startLineNumber:
-       monaco.current.getPosition().lineNumber,
-      startColumn:
-       monaco.current.getPosition().column,
-      endLineNumber:
-       monaco.current.getPosition().lineNumber,
-      endColumn:
-       monaco.current.getPosition().column,
-     },
-     text: text,
-    },
-   ])
+  
+  const [source, setSource] = useState<string>('')
+  
+  function updateIframe(code: string | undefined): void {
+    const source = /* html */ `
+    <html>
+    <head>
+      <link rel="stylesheet" href="/iframe.css">
+    </head>
+    <body>
+      <div id="app"></div>
+      <script type="module">${code}</script>
+    </body>
+    </html>
+  `
+    setSource(source)
   }
- }
+  
+  
+  /* const insertBullet = (text: string) => {
+    if (monaco.current) {
+     monaco.current.executeEdits('', [
+      {
+       range: {
+        startLineNumber:
+         monaco.current.getPosition().lineNumber,
+        startColumn:
+         monaco.current.getPosition().column,
+        endLineNumber:
+         monaco.current.getPosition().lineNumber,
+        endColumn:
+         monaco.current.getPosition().column,
+       },
+       text: text,
+      },
+     ])
+    }
+   }*/
 
- const write = async () => {
+ /* const write = async () => {
   for (let i = 0; i < CPPCode.length; i++) {
    await timer(20)
    insertBullet(CPPCode[i])
   }
- }
+ }*/
 
  return (
   <>
+    <iframe srcDoc={source}/>
    <WindowToolbarIcon className='w-6 h-6 absolute -top-1 left-4 z-20' />
    <Editor
     className='pt-4'
@@ -50,10 +92,13 @@ const MonacoEditor: FC = () => {
      lineNumbersMinChars: '3',
      smoothScrolling: true,
     }}
-    onMount={(editor) => {
-     monaco.current = editor
-     monaco.current.focus()
-     write().then(() => {})
+    /*    onMount={(editor) => {
+      monaco.current = editor
+      monaco.current.focus()
+      write().then(() => {})
+     }}*/
+    onChange={(code) => {
+      updateIframe(code)
     }}
     defaultLanguage='cpp'
     theme='vs'
